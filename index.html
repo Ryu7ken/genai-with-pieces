@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts About Me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Styling - Gaming Geek Vibes! */
+        body {
+            background: linear-gradient(to bottom, #0F2027, #203A43, #2C5364); 
+            color: #F0FFFF;           
+            font-family: 'Press Start 2P', cursive; 
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            /* Hide content initially */
+            visibility: hidden; 
+        }
+
+        /* Animation for the entire content */
+        body.show-content {
+            visibility: visible;
+            animation: fadeIn 2s ease-in-out; 
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 2.5em; 
+            margin-bottom: 10px;
+            color: #00FF41;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); 
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            max-width: 800px; 
+        }
+
+        #fact-container { 
+            border: 3px solid #00FF41;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 1.3em;
+            min-height: 40px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease; 
+            opacity: 0;
+        }
+
+        #generate-fact {
+            background-color: #00FF41;
+            color: #203A43; 
+            padding: 15px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative; /* Add this for the animation */
+            overflow: hidden;
+        }
+
+        #generate-fact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 5px 10px rgba(0, 255, 65, 0.6); 
+        }
+
+        #generate-fact:active {
+            transform: translateY(1px);
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); 
+        }
+
+        #generate-fact::before { /* Create a pseudo-element for the effect */
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+            z-index: -1; /* Keep it behind the button text */
+            transition: width 0.3s ease-out; /* Add a smooth transition */
+        }
+
+        #generate-fact:hover::before {
+            width: 100%; /* Expand the width on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to My Domain!</h1>
+    <p>Hit the button for a random fun fact about me:</p>
+
+    <button id="generate-fact">Generate Fun Fact</button>
+    <div id="fact-container"></div> 
+
+    <script>
+        const facts = [
+            "I can debug code faster than I can finish a level in my favorite game (sometimes).",
+            "My dream date night? Pizza, board games, and maybe a little friendly competition on the console.",
+            "I'm fluent in more programming languages than spoken ones (but I'm working on both!).",
+            "I'd rather be at a LAN party than a club any day, but don't mind a pub quiz with close friends.",
+            "I can explain blockchain, but I'm not sure I can explain the rules to Monopoly anymore.",
+            "My ideal weekend involves a balance of epic gaming sessions and quiet time with a good book.",
+            "I'm the go-to tech support for my entire family (and I secretly enjoy it).",
+            "I've probably built my own computer at least once... and might be planning my next one.",
+            "I find solace in the digital world but cherish the meaningful connections I have in the real one.",
+            "I might not always initiate conversation, but I'm a great listener and offer surprisingly insightful advice.",
+            "I express myself best through creative outlets like coding, gaming, or writing.",
+            "I have strong opinions about which video game console reigns supreme (and I'm not afraid to debate it).",
+            "I get overly excited about new tech gadgets and software updates.",
+            "I love exploring vast virtual worlds but also appreciate the beauty of a quiet nature walk.",
+            "I'm a walking contradiction of introversion and extroversion, and I wouldn't have it any other way."
+        ];
+
+        const factContainer = document.getElementById('fact-container');
+        const generateButton = document.getElementById('generate-fact');
+
+        generateButton.addEventListener('click', () => {
+            // Generate a random index within the facts array
+            const randomIndex = Math.floor(Math.random() * facts.length);
+
+            // Update the factContainer with the new random fact
+            factContainer.textContent = facts[randomIndex];
+
+            // Optional: Add a visual effect for fun (e.g., fade-in)
+            factContainer.style.opacity = 0;
+            setTimeout(() => {
+                factContainer.style.opacity = 1; 
+            }, 100); 
+        });
+
+
+        // Add the 'show-content' class to the body after 2 seconds
+        setTimeout(() => {
+            document.body.classList.add('show-content');
+        }, 1200); 
+    </script>
+
+</body>
+</html>
